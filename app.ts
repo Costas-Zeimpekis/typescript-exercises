@@ -14,8 +14,28 @@ interface Student {
   type Teams = "Olympaikos" | "Panathinaikow" | "AEK" | "Aris" | "PAOK";
 
   //question 1
+     function sendStudentData1():Partial<Student>{
+      return {
+        avgGrade: 20,
+        id: 12345,
+        firstName: "Tasos",
+        lastName: "Matatakis"   
+      }
+    }
 
   //question 2 
+    function sendStudentData2(): Required<Student> {
+      return {
+        address: "Neverland 2",
+        age: 50,
+        avgGrade: 20,
+        city: "Atlantis",
+        email: "nobody@gmail.com",
+        id: 12345,
+        firstName: "Tasos",
+        lastName: "Matatakis"
+      };
+    }
 
   //question 3
     function getStudentData(): Readonly<Student> {
@@ -39,12 +59,16 @@ interface Student {
         name: string;
     }
     type School = Record<StudentsClass,Students>;
+
   //question 5
     type Student2 = Pick <Student, "firstName" | "lastName" | "id" > ;
+
   //question 6
     type Student3 = Omit <Student , "avgGrade" >;
+
   //question 7
     type FilteredTeams1 = Extract<Teams, "PAOK" | "AEK">;
+    
   //question 8
     type FilteredTeams2 = Exclude<Teams, "PAOK" | "AEK">;
 
