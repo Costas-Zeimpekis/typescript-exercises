@@ -1,81 +1,69 @@
+
+// ex 1 
+enum WifiLamp {
+  on,
+  off
+}
+
+// ex2
+enum Students {
+  male = 'male',
+  female = 'female',
+  nonBinary = 'non-binary'
+}
+
+// ex3 
+const classes = ["HTML", "CSS", "JavaScript"];
+
+
+for(let i= 0; i< classes.length; i++){
+  console.log(classes[i]);
+}
+
+for(let item in classes){
+  console.log(classes[item]);
+}
+
+for(let class1 of classes) {
+  console.log(class1);
+}
+
+classes.forEach((item)=> console.log(item));
+
+// ex4
 interface Student {
-    address?: string;
-    age?: number;
-    avgGrade?: number;
-    city?: string;
-    email: string;
-    id?: number;
-    firstName: string;
-    lastName: string;
-  }
-
-//  ex 1 
-  function fetchStudentData():Partial<Student>{
-      return {
-        avgGrade: 20,
-        id: 12345,
-        firstName: "Tasos",
-        lastName: "Matatakis"   
-      }
-    }
+  address: string;
+  age: number;
+  avgGrade: number;
+  city: string;
+  email: string;
+  id: number;
+  firstName: string;
+  lastName: string;
+}
 
 
-// ex 2
-function sendStudentData(): Required<Student> {
-    return {
-      address: "Neverland 2",
-      age: 50,
-      avgGrade: 20,
-      city: "Atlantis",
-      email: "nobody@gmail.com",
-      id: 12345,
-      firstName: "Tasos",
-      lastName: "Matatakis"
-    };
-  }
-
-
-// ex 3
-
-function getStudentData(): Readonly<Student> {
-    return {
-      address: "Neverland 2",
-      age: 50,
-      avgGrade: 20,
-      city: "Atlantis",
-      email: "nobody@gmail.com",
-      id: 12345,
-      firstName: "Tasos",
-      lastName: "Matatakis"
-    };
-  }
-
-
-//  ex 4 
-interface StudentNames {
-    firstName: string,
-    lastName: string
+const student: Student= {
+  address: "Neverland 2",
+  age: 50,
+  avgGrade: 20,
+  city: "Atlantis",
+  email: "nobody@gmail.com",
+  id: 12345,
+  firstName: "Tasos",
+  lastName: "Matatakis"
 };
 
-type StudentClass = string | number;
+for(let details in student) {
+  console.log(`the student ${details} is ${student[details]}`);
+}
 
-const students: Record<StudentClass, StudentNames> = {
-    12  :{firstName: 'geo', lastName:'geo'},
-    'A12' :{firstName: 'geo', lastName:'geo'}
-};
+for(const [key, value] of Object.entries(student)){
+  console.log(`The student ${key} is ${value}`);
+}
 
-// ex 5
-type studentPick = Pick<Student, 'firstName' | 'lastName' | 'id'>;
+Object.entries(student).forEach(([key, value])=> console.log(`The student ${key} i ${value}`));
 
-// ex 6
-
-type studentOmit = Omit<Student, 'avgGrade'>;
-
-
-// ex 7
-type Teams = "Olympiakos" | "Panathinaikos" | "AEK" | "Aris" | "PAOK";
-
-type teamsChoose = Extract<Teams, 'AEK' | 'PAOK'>
-
-// ex 8
-type teamsBetween = Exclude<Teams, 'Aris' | 'Olympiakos' | 'Panathinaikos'>
+for (const value of Object.values(student)) {
+  console.log(`The student ${Object.values(student[value])} is ${value}`);
+ }
